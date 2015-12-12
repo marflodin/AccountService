@@ -12,18 +12,14 @@ import java.math.BigDecimal;
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
 	public static Long nextId = 0L;
 
 	@Id
-	protected Long id;
-
-	protected String number;
-
+	private Long id;
+	private String number;
 	@Column(name = "name")
-	protected String owner;
-
-	protected BigDecimal balance;
+	private String owner;
+	private BigDecimal balance;
 
 	protected static Long getNextId() {
 		synchronized (nextId) {
@@ -31,9 +27,6 @@ public class Account implements Serializable {
 		}
 	}
 
-	/**
-	 * Default constructor for JPA only.
-	 */
 	protected Account() {
 		balance = BigDecimal.ZERO;
 	}
@@ -49,12 +42,6 @@ public class Account implements Serializable {
 		return id;
 	}
 
-	/**
-	 * Set JPA id - for testing and JPA only. Not intended for normal use.
-	 * 
-	 * @param id
-	 *            The new id.
-	 */
 	protected void setId(long id) {
 		this.id = id;
 	}
@@ -86,10 +73,4 @@ public class Account implements Serializable {
 	public void deposit(BigDecimal amount) {
 		balance.add(amount);
 	}
-
-	@Override
-	public String toString() {
-		return number + " [" + owner + "]: $" + balance;
-	}
-
 }
